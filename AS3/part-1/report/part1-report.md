@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 ```
 
 ## step 1: compile, and enable GDB debugging
-![image](/screenshots/compile.png)
+![image](/CS450/AS3/part-1/screenshots/compile.png)
 
 ## step 2: set breakpoint at line 9
 ![image](/screenshots/gdb-1.png)
