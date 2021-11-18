@@ -1,0 +1,19 @@
+100a101
+> extern int sys_countTraps(void);
+123a125
+> [SYS_countTraps]   sys_countTraps,
+138a141,154
+> }
+> 
+> extern int trap_get_statis(void *data);
+> int sys_countTraps(void)
+> {
+>     int ret;
+>     void *st;
+> 
+>     if(argptr(0, (void*)&st, sizeof(*st)) < 0)
+>       return -1;
+> 
+>     ret = trap_get_statis(st);
+> 
+>     return ret;

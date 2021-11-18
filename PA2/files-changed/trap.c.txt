@@ -1,0 +1,144 @@
+16a17,51
+> struct trap_kernel_statis_s {
+>     int TRAP_ALL;
+> 	int TRAP_DIVIDE;
+> 	int TRAP_DEBUG;
+> 	int TRAP_NMI;
+> 	int TRAP_BRKPTRAP;
+> 	int TRAP_OFLOW ;
+> 	int TRAP_BOUND;
+> 	int TRAP_ILLOP;
+> 	int TRAP_DEVICE;
+> 	int TRAP_DBLFLTRAP;
+> 	int TRAP_COPROC;
+> 	int TRAP_TRAPSS;
+> 	int TRAP_SEGNP;
+> 	int TRAP_STRAPACK;
+> 	int TRAP_GPFLTRAP;
+> 	int TRAP_PGFLTRAP;
+> 	int TRAP_RES;
+> 	int TRAP_FPERR;
+> 	int TRAP_ALIGN;
+> 	int TRAP_MCHK;
+> 	int TRAP_SIMDERR;
+> 	int TRAP_SYSCALL;
+> 	int TRAP_DEFAULTRAP;
+> 	int TRAP_IRQ_TRAPIMER;
+> 	int TRAP_IRQ_KBD;
+> 	int TRAP_IRQ_COM1;
+> 	int TRAP_IRQ_IDE;
+> 	int TRAP_IRQ_ERROR;
+> 	int TRAP_IRQ_SPURIOUS;
+> };
+> 
+> struct trap_kernel_statis_s g_kernel_trap_statis;
+> void trap_statis_inc(uint trapno);
+> 
+38a74,75
+>   trap_statis_inc(tf->trapno);
+> 
+111a149,252
+> 
+> void trap_statis_inc(uint trapno)
+> {
+>     g_kernel_trap_statis.TRAP_ALL++;
+> 
+>     switch (trapno) {
+>     case T_DIVIDE:
+>         g_kernel_trap_statis.TRAP_DIVIDE++;
+>         break;
+>     case T_DEBUG:
+>     	g_kernel_trap_statis.TRAP_DEBUG++;
+>     	break;
+>     case T_NMI:
+>     	g_kernel_trap_statis.TRAP_NMI++;
+>     	break;
+>     case T_BRKPT:
+>         g_kernel_trap_statis.TRAP_BRKPTRAP++;
+>     	break;
+>     case T_OFLOW:
+>         g_kernel_trap_statis.TRAP_OFLOW++;
+>     	break;
+>     case T_BOUND:
+>         g_kernel_trap_statis.TRAP_BOUND++;
+>     	break;
+>     case T_ILLOP:
+>         g_kernel_trap_statis.TRAP_ILLOP++;
+>     	break;
+>     case T_DEVICE:
+>         g_kernel_trap_statis.TRAP_DEVICE++;
+>     	break;
+>     case T_DBLFLT:
+>         g_kernel_trap_statis.TRAP_DBLFLTRAP++;
+>     	break;
+>     //case T_COPROC:
+>     //    g_kernel_trap_statis.TRAP_COPROC++;
+>     //	break;
+>     case T_TSS:
+>         g_kernel_trap_statis.TRAP_TRAPSS++;
+>     	break;
+>     case T_SEGNP:
+>         g_kernel_trap_statis.TRAP_SEGNP++;
+>     	break;
+>     case T_STACK:
+>         g_kernel_trap_statis.TRAP_STRAPACK++;
+>     	break;
+>     case T_GPFLT:
+>         g_kernel_trap_statis.TRAP_GPFLTRAP++;
+>     	break;
+>     case T_PGFLT:
+>         g_kernel_trap_statis.TRAP_PGFLTRAP++;
+>     	break;
+>     //case T_RES:
+>     //    g_kernel_trap_statis.TRAP_RES++;
+>     //	break;
+>     case T_FPERR:
+>         g_kernel_trap_statis.TRAP_FPERR++;
+>     	break;
+>     case T_ALIGN:
+>         g_kernel_trap_statis.TRAP_ALIGN++;
+>     	break;
+>     case T_MCHK:
+>         g_kernel_trap_statis.TRAP_MCHK++;
+>     	break;
+>     case T_SIMDERR:
+>         g_kernel_trap_statis.TRAP_SIMDERR++;
+>     	break;
+>     case T_SYSCALL:
+>         g_kernel_trap_statis.TRAP_SYSCALL++;
+>     	break;
+>     case T_DEFAULT:
+>         g_kernel_trap_statis.TRAP_DEFAULTRAP++;
+>     	break;
+>     case T_IRQ0 + IRQ_TIMER:
+>         g_kernel_trap_statis.TRAP_IRQ_TRAPIMER++;
+>     	break;
+>     case T_IRQ0 + IRQ_KBD:
+>         g_kernel_trap_statis.TRAP_IRQ_KBD++;
+>     	break;
+>     case T_IRQ0 + IRQ_COM1:
+>         g_kernel_trap_statis.TRAP_IRQ_COM1++;
+>     	break;
+>     case T_IRQ0 + IRQ_IDE:
+>         g_kernel_trap_statis.TRAP_IRQ_IDE++;
+>     	break;
+>     case T_IRQ0 + IRQ_ERROR:
+>         g_kernel_trap_statis.TRAP_IRQ_ERROR++;
+>     	break;
+>     case T_IRQ0 + IRQ_SPURIOUS:
+>         g_kernel_trap_statis.TRAP_IRQ_SPURIOUS++;
+> 	    break;
+>     default:
+>         break;
+>     }
+> 
+>     return;
+> }
+> 
+> int trap_get_statis(void *data)
+> {
+>     memmove(data, &g_kernel_trap_statis, sizeof(g_kernel_trap_statis));
+> 
+>     return g_kernel_trap_statis.TRAP_ALL;
+> }
+> 

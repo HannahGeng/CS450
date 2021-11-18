@@ -1,0 +1,38 @@
+--- stat.h	2021-10-11 07:53:35.463878759 +0800
++++ stat_new.h	2021-10-11 07:56:43.468491961 +0800
+@@ -9,3 +9,35 @@
+   short nlink; // Number of links to file
+   uint size;   // Size of file in bytes
+ };
++
++struct trap_statis_s {
++    int TRAP_ALL;
++	int TRAP_DIVIDE;
++	int TRAP_DEBUG;
++	int TRAP_NMI;
++	int TRAP_BRKPTRAP;
++	int TRAP_OFLOW ;
++	int TRAP_BOUND;
++	int TRAP_ILLOP;
++	int TRAP_DEVICE;
++	int TRAP_DBLFLTRAP;
++	int TRAP_COPROC;
++	int TRAP_TRAPSS;
++	int TRAP_SEGNP;
++	int TRAP_STRAPACK;
++	int TRAP_GPFLTRAP;
++	int TRAP_PGFLTRAP;
++	int TRAP_RES;
++	int TRAP_FPERR;
++	int TRAP_ALIGN;
++	int TRAP_MCHK;
++	int TRAP_SIMDERR;
++	int TRAP_SYSCALL;
++	int TRAP_DEFAULTRAP;
++	int TRAP_IRQ_TRAPIMER;
++	int TRAP_IRQ_KBD;
++	int TRAP_IRQ_COM1;
++	int TRAP_IRQ_IDE;
++	int TRAP_IRQ_ERROR;
++	int TRAP_IRQ_SPURIOUS;
++};
